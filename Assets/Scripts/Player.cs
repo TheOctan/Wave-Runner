@@ -11,15 +11,26 @@ public class Player : MonoBehaviour
 	private Rigidbody2D rigidbody2d;
 	private float angle = 0;
 
+	private GameManager gameManager;
+
 	private void Awake()
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
+		gameManager = FindObjectOfType<GameManager>();
 	}
 
 	private void FixedUpdate()
 	{
 		MovePlayer();
 		GetInput();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("Obstacle"))
+		{
+			Dead();
+		}
 	}
 
 	private void MovePlayer()
@@ -52,5 +63,10 @@ public class Player : MonoBehaviour
 				rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, 0);
 			}
 		}
+	}
+
+	private void Dead()
+	{
+		gameManager.GameOver();
 	}
 }
