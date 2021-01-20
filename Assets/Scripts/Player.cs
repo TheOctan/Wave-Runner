@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -12,10 +13,11 @@ public class Player : MonoBehaviour
 	[Header("Objects")]
 	public GameObject deadEffect;
 
+	private GameManager gameManager;
+
 	private Rigidbody2D rigidbody2d;
 	private float angle = 0;
-
-	private GameManager gameManager;
+	private bool isDead;
 
 	private void Awake()
 	{
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (isDead) return;
+
 		MovePlayer();
 		GetInput();
 	}
@@ -71,7 +75,10 @@ public class Player : MonoBehaviour
 
 	private void Dead()
 	{
+		isDead = true;
+
 		EmitDeadEffect();
+		StopPlayer();
 		gameManager.GameOver();
 	}
 
@@ -80,5 +87,11 @@ public class Player : MonoBehaviour
 		deadEffect.transform.position = transform.position;
 		var particleEffrct = deadEffect.GetComponentInChildren<ParticleSystem>();
 		particleEffrct.Play();
+	}
+
+	private void StopPlayer()
+	{
+		rigidbody2d.velocity = Vector2.zero;
+		rigidbody2d.isKinematic = true;
 	}
 }

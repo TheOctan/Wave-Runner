@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject gameOverPanel;
+
     private void Start()
     {
         
@@ -16,6 +19,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
 	{
-        //Debug.Log("Game Over");
+        StartCoroutine(GameOverDelay());
+	}
+
+    private IEnumerator GameOverDelay()
+	{
+        yield return new WaitForSecondsRealtime(0.5f);
+        gameOverPanel.SetActive(true);
+        yield return null;
 	}
 }
