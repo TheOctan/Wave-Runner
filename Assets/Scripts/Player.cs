@@ -5,8 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+	[Header("Properties")]
 	public float xSpeed = 3;
 	public float ySpeed = 30;
+
+	[Header("Objects")]
+	public GameObject deadEffect;
 
 	private Rigidbody2D rigidbody2d;
 	private float angle = 0;
@@ -39,7 +43,7 @@ public class Player : MonoBehaviour
 		pos.x = Mathf.Cos(angle) * 3;
 
 		transform.position = pos;
-		angle += Time.deltaTime * xSpeed;
+		angle += Time.fixedDeltaTime * xSpeed;
 	}
 
 	private void GetInput()
@@ -67,6 +71,14 @@ public class Player : MonoBehaviour
 
 	private void Dead()
 	{
+		EmitDeadEffect();
 		gameManager.GameOver();
+	}
+
+	private void EmitDeadEffect()
+	{
+		deadEffect.transform.position = transform.position;
+		var particleEffrct = deadEffect.GetComponentInChildren<ParticleSystem>();
+		particleEffrct.Play();
 	}
 }

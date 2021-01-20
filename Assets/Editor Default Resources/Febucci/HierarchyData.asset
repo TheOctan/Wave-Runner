@@ -17,7 +17,9 @@ MonoBehaviour:
   icons:
     enabled: 1
     aligned: 0
-    pairs: []
+    pairs:
+    - iconToDraw: {fileID: 0}
+      targetClasses: []
   prefabsData:
     enabled: 0
     prefabs: []
