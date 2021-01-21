@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 	[Header("Objects")]
 	public GameObject deadEffect;
 
-	private GameManager gameManager;
+	private GameEventHandler gameManager;
 
 	private Rigidbody2D rigidbody2d;
 	private float angle = 0;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	private void Awake()
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
-		gameManager = FindObjectOfType<GameManager>();
+		gameManager = FindObjectOfType<GameEventHandler>();
 	}
 
 	private void FixedUpdate()

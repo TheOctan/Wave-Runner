@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameEventHandler : MonoBehaviour
 {
     public GameObject gameOverPanel;
 
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
 	{
         StartCoroutine(GameOverDelay());
+	}
+
+    public void OnRestart()
+	{
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
     private IEnumerator GameOverDelay()
