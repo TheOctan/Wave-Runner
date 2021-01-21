@@ -6,32 +6,47 @@ using UnityEngine.SceneManagement;
 
 public class GameEventHandler : MonoBehaviour
 {
-    public GameObject gameOverPanel;
+	public GameObject gameOverPanel;
+	public TextMeshProUGUI currentScoreText;
 
-    private void Start()
-    {
-        
-    }
+	private int currentScore;
 
-    private void Update()
-    {
-        
-    }
-
-    public void GameOver()
+	private void Start()
 	{
-        StartCoroutine(GameOverDelay());
+		currentScore = 0;
+		SetScore();
 	}
 
-    public void OnRestart()
+	private void Update()
 	{
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
 	}
 
-    private IEnumerator GameOverDelay()
+	public void GameOver()
 	{
-        yield return new WaitForSecondsRealtime(0.5f);
-        gameOverPanel.SetActive(true);
-        yield return null;
+		StartCoroutine(GameOverDelay());
+	}
+
+	public void OnRestart()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	public void AddScore(int score)
+	{
+		currentScore += score;
+		SetScore();
+	}
+
+	private IEnumerator GameOverDelay()
+	{
+		yield return new WaitForSecondsRealtime(0.5f);
+		gameOverPanel.SetActive(true);
+		yield return null;
+	}
+
+	private void SetScore()
+	{
+		currentScoreText.text = currentScore.ToString();
 	}
 }

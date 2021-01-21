@@ -12,17 +12,28 @@ public class Player : MonoBehaviour
 
 	[Header("Objects")]
 	public GameObject deadEffect;
+	public GameObject itemEffect;
 
-	private GameEventHandler gameManager;
-
+	private GameEventHandler gameEventHandler;
 	private Rigidbody2D rigidbody2d;
+	private Camera mainCamera;
+
 	private float angle = 0;
 	private bool isDead;
+
+	private float hueValue;
 
 	private void Awake()
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
-		gameManager = FindObjectOfType<GameEventHandler>();
+		gameEventHandler = FindObjectOfType<GameEventHandler>();
+		mainCamera = Camera.main;
+	}
+
+	private void Start()
+	{
+		hueValue = Random.Range(0, 10) / 10f;
+		SetBackgroundColor();
 	}
 
 	private void FixedUpdate()
@@ -38,6 +49,10 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.CompareTag("Obstacle"))
 		{
 			Dead();
+		}
+		else if (collision.gameObject.CompareTag("Item"))
+		{
+			GetItem(collision.gameObject.transform.parent.gameObject);
 		}
 	}
 
@@ -79,7 +94,16 @@ public class Player : MonoBehaviour
 
 		EmitDeadEffect();
 		StopPlayer();
-		gameManager.GameOver();
+		gameEventHandler.GameOver();
+	}
+
+	private void GetItem(GameObject item)
+	{
+		SetBackgroundColor();
+
+		Destroy(Instantiate(itemEffect, item.transform.position, Quaternion.identity), 0.5f);
+		Destroy(item);
+		gameEventHandler.AddScore(1);
 	}
 
 	private void EmitDeadEffect()
@@ -93,5 +117,16 @@ public class Player : MonoBehaviour
 	{
 		rigidbody2d.velocity = Vector2.zero;
 		rigidbody2d.isKinematic = true;
+	}
+
+	private void SetBackgroundColor()
+	{
+		mainCamera.backgroundColor = Color.HSVToRGB(hueValue, 0.6f, 0.8f);
+
+		hueValue += 0.1f;
+		if (hueValue >= 1)
+		{
+			hueValue = 0;
+		}
 	}
 }
