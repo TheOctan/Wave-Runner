@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
     public GameObject player;
 
     [Header("Properies")]
-    public float smoothTime = 0.3f;
+    public float smoothTime = 0.15f;
     public int yOffset = 0;
 
     private Vector3 velocity = Vector3.zero;

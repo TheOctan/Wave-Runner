@@ -407,9 +407,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 519420032}
+  - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -438,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1562003548}
-  smoothTime: 0.3
+  smoothTime: 0.15
   yOffset: 15
 --- !u!20 &519420031
 Camera:
@@ -497,6 +498,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2446aef451972e468165595e54ef1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.15
+  magnitude: 0.2
 --- !u!1 &785428606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,11 +2057,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Effect_Dead
-      objectReference: {fileID: 0}
-    - target: {fileID: 7349291059691124611, guid: f79a456937699054fb7534747ad6ae4e,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f79a456937699054fb7534747ad6ae4e, type: 3}

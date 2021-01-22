@@ -92,6 +92,8 @@ public class Player : MonoBehaviour
 	{
 		isDead = true;
 
+		mainCamera.GetComponent<CameraShake>().Shake();
+
 		EmitDeadEffect();
 		StopPlayer();
 		gameEventHandler.GameOver();
