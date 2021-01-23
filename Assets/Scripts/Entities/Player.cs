@@ -21,8 +21,6 @@ public class Player : MonoBehaviour
 	private float angle = 0;
 	private bool isDead;
 
-	private float hueValue;
-
 	private void Awake()
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
@@ -32,8 +30,7 @@ public class Player : MonoBehaviour
 
 	private void Start()
 	{
-		hueValue = Random.Range(0, 10) / 10f;
-		SetBackgroundColor();
+			
 	}
 
 	private void FixedUpdate()
@@ -79,7 +76,7 @@ public class Player : MonoBehaviour
 		{
 			if (rigidbody2d.velocity.y > 0)
 			{
-				rigidbody2d.AddForce(new Vector2(0, -ySpeed));
+				rigidbody2d.AddForce(new Vector2(0, -ySpeed / 2f));
 			}
 			else
 			{
@@ -96,12 +93,12 @@ public class Player : MonoBehaviour
 
 		EmitDeadEffect();
 		StopPlayer();
-		gameEventHandler.GameOver();
+		gameEventHandler.OnGameOver();
 	}
 
 	private void GetItem(GameObject item)
 	{
-		SetBackgroundColor();
+		gameEventHandler.OnGetItem();
 
 		Destroy(Instantiate(itemEffect, item.transform.position, Quaternion.identity), 0.5f);
 		Destroy(item);
@@ -121,14 +118,5 @@ public class Player : MonoBehaviour
 		rigidbody2d.isKinematic = true;
 	}
 
-	private void SetBackgroundColor()
-	{
-		mainCamera.backgroundColor = Color.HSVToRGB(hueValue, 0.6f, 0.8f);
-
-		hueValue += 0.1f;
-		if (hueValue >= 1)
-		{
-			hueValue = 0;
-		}
-	}
+	
 }
