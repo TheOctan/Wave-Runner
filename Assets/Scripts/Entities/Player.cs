@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 		{
 			if (rigidbody2d.velocity.y > 0)
 			{
-				rigidbody2d.AddForce(new Vector2(0, -ySpeed));
+				rigidbody2d.AddForce(new Vector2(0, -ySpeed / 2f));
 			}
 			else
 			{
