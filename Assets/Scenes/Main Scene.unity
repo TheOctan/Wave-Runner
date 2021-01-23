@@ -470,8 +470,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1291845631
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.29803923}
+    rgba: 1090519039
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.2509804}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -952,8 +952,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1662648237}
-  currentScoreText: {fileID: 1131435080}
+  bestScoreTitleText: {fileID: 785428608}
   bestScoreText: {fileID: 1513732197}
+  currentScoreTitleText: {fileID: 1577390582}
+  currentScoreText: {fileID: 1131435080}
 --- !u!1 &1562003548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,8 +1267,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1291845631
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.29803923}
+    rgba: 1090519039
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.2509804}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
