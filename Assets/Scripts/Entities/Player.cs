@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
 	private void Start()
 	{
-			
+		
 	}
 
 	private void FixedUpdate()
@@ -45,7 +45,10 @@ public class Player : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Obstacle"))
 		{
-			Dead();
+			if (!isDead)
+			{
+				Dead();
+			}
 		}
 		else if (collision.gameObject.CompareTag("Item"))
 		{
